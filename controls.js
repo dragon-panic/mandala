@@ -66,6 +66,37 @@ function setupGUI(config) {
     animationFolder.add(config, 'rotationSpeed', 0, 0.02).step(0.001);
     animationFolder.add(config, 'pulseEffect');
     
+    // Parameter Animation controls
+    animationFolder.add(config, 'parameterAnimation').name('Animate Parameters');
+    animationFolder.add(config, 'animationSpeed', 0.001, 0.05).step(0.001).name('Base Anim Speed');
+    
+    // Create subfolder for which parameters to animate
+    const paramAnimFolder = animationFolder.addFolder('Animated Parameters');
+    paramAnimFolder.add(config.animationParameters, 'symmetry').name('Symmetry');
+    paramAnimFolder.add(config.animationParameters, 'lineWidth').name('Line Width');
+    paramAnimFolder.add(config.animationParameters, 'opacity').name('Opacity');
+    paramAnimFolder.add(config.animationParameters, 'complexity').name('Complexity');
+    
+    // Create subfolder for animation speeds
+    const speedAnimFolder = animationFolder.addFolder('Animation Speeds');
+    speedAnimFolder.add(config.animationSpeeds, 'symmetry', 0.1, 3).step(0.1).name('Symmetry Speed');
+    speedAnimFolder.add(config.animationSpeeds, 'lineWidth', 0.1, 3).step(0.1).name('Line Width Speed');
+    speedAnimFolder.add(config.animationSpeeds, 'opacity', 0.1, 3).step(0.1).name('Opacity Speed');
+    speedAnimFolder.add(config.animationSpeeds, 'complexity', 0.1, 3).step(0.1).name('Complexity Speed');
+    
+    // Create subfolder for animation ranges
+    const rangeAnimFolder = animationFolder.addFolder('Animation Ranges');
+    rangeAnimFolder.add(config.animationRanges.symmetry, 'min', 2, 16).step(1).name('Symmetry Min');
+    rangeAnimFolder.add(config.animationRanges.symmetry, 'max', 3, 32).step(1).name('Symmetry Max');
+    rangeAnimFolder.add(config.animationRanges.lineWidth, 'min', 0.1, 2).step(0.1).name('Line Width Min');
+    rangeAnimFolder.add(config.animationRanges.lineWidth, 'max', 0.5, 5).step(0.1).name('Line Width Max');
+    rangeAnimFolder.add(config.animationRanges.opacity, 'min', 0.1, 0.9).step(0.1).name('Opacity Min');
+    rangeAnimFolder.add(config.animationRanges.opacity, 'max', 0.2, 1).step(0.1).name('Opacity Max');
+    rangeAnimFolder.add(config.animationRanges.complexity, 'min', 0.1, 0.8).step(0.1).name('Complexity Min');
+    rangeAnimFolder.add(config.animationRanges.complexity, 'max', 0.2, 1).step(0.1).name('Complexity Max');
+    
+    animationFolder.open();
+    
     // Actions
     const actionsFolder = gui.addFolder('Actions');
     actionsFolder.add({ regenerate: window.MandalaApp.randomizeMandala }, 'regenerate').name('New Mandala');
@@ -91,6 +122,11 @@ function setupKeyboardShortcuts() {
         // P key - Toggle pulse effect
         if (event.code === 'KeyP') {
             window.MandalaApp.config.pulseEffect = !window.MandalaApp.config.pulseEffect;
+        }
+        
+        // A key - Toggle parameter animation
+        if (event.code === 'KeyA') {
+            window.MandalaApp.config.parameterAnimation = !window.MandalaApp.config.parameterAnimation;
         }
         
         // + key - Increase symmetry
@@ -259,6 +295,107 @@ function setupPresets(folder, config) {
                 complexity: 0.8,
                 pulseEffect: true,
                 algorithm: 'flower'
+            });
+        },
+        // Parameter animation presets
+        'Dancing Mandala': function() {
+            applyPreset({
+                symmetry: 8,
+                lineWidth: 1.5,
+                opacity: 0.8,
+                useGradient: true,
+                colorMode: 'rainbow',
+                backgroundColor: '#000033',
+                layers: 3,
+                complexity: 0.6,
+                pulseEffect: true,
+                autoRotate: true,
+                rotationSpeed: 0.002,
+                algorithm: 'flower',
+                parameterAnimation: true,
+                animationSpeed: 0.015,
+                animationParameters: {
+                    symmetry: true,
+                    lineWidth: true,
+                    opacity: true,
+                    complexity: true
+                },
+                animationRanges: {
+                    symmetry: { min: 5, max: 12 },
+                    lineWidth: { min: 0.8, max: 2.5 },
+                    opacity: { min: 0.6, max: 0.9 },
+                    complexity: { min: 0.4, max: 0.8 }
+                },
+                animationSpeeds: {
+                    symmetry: 0.5,
+                    lineWidth: 1.3,
+                    opacity: 2.0,
+                    complexity: 0.7
+                }
+            });
+        },
+        'Slow Breathing': function() {
+            applyPreset({
+                symmetry: 6,
+                lineWidth: 1.2,
+                opacity: 0.85,
+                useGradient: true,
+                colorMode: 'complementary',
+                backgroundColor: '#000000',
+                layers: 4,
+                complexity: 0.5,
+                pulseEffect: false,
+                autoRotate: true,
+                rotationSpeed: 0.001,
+                algorithm: 'geometric',
+                parameterAnimation: true,
+                animationSpeed: 0.005,
+                animationParameters: {
+                    symmetry: false,
+                    lineWidth: true,
+                    opacity: true,
+                    complexity: false
+                },
+                animationRanges: {
+                    lineWidth: { min: 0.5, max: 2.0 },
+                    opacity: { min: 0.5, max: 1.0 }
+                },
+                animationSpeeds: {
+                    lineWidth: 1.0,
+                    opacity: 0.6
+                }
+            });
+        },
+        'Rhythmic Flow': function() {
+            applyPreset({
+                symmetry: 10,
+                lineWidth: 1.8,
+                opacity: 0.7,
+                useGradient: true,
+                colorMode: 'ocean',
+                backgroundColor: '#001a1a',
+                layers: 3,
+                complexity: 0.7,
+                pulseEffect: true,
+                autoRotate: true,
+                rotationSpeed: 0.003,
+                algorithm: 'simple',
+                parameterAnimation: true,
+                animationSpeed: 0.02,
+                animationParameters: {
+                    symmetry: true,
+                    lineWidth: false,
+                    opacity: false,
+                    complexity: true
+                },
+                animationRanges: {
+                    symmetry: { min: 6, max: 16 },
+                    complexity: { min: 0.3, max: 0.9 }
+                },
+                animationSpeeds: {
+                    symmetry: 0.3,
+                    complexity: 2.5
+                }
             });
         }
     };

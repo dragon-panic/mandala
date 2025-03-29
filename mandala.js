@@ -16,7 +16,27 @@ const config = {
     colorMode: 'monochrome', // Color mode: monochrome, rainbow, complementary
     layers: 3,             // Number of pattern layers
     pulseEffect: true,     // Add pulsing effect
-    algorithm: 'flower'    // Which algorithm to use for drawing
+    algorithm: 'flower',    // Which algorithm to use for drawing
+    parameterAnimation: false,     // Enable parameter animation
+    animationSpeed: 0.01,         // Base speed of parameter animation
+    animationParameters: {        // Which parameters to animate
+        symmetry: false,
+        lineWidth: false,
+        opacity: false,
+        complexity: true
+    },
+    animationRanges: {           // Min/max ranges for animated parameters
+        symmetry: { min: 4, max: 16 },
+        lineWidth: { min: 0.5, max: 3 },
+        opacity: { min: 0.3, max: 1 },
+        complexity: { min: 0.2, max: 0.8 }
+    },
+    animationSpeeds: {          // Relative speed multipliers for each parameter
+        symmetry: 1.0,
+        lineWidth: 0.7,
+        opacity: 1.3,
+        complexity: 1.0
+    }
 };
 
 // Available algorithms (reference to window.algorithms)
@@ -39,6 +59,13 @@ let noise;
 let angle = 0;
 let animationId;
 let pulsePhase = 0;
+let animationPhase = 0;
+let parameterPhases = {       // Separate phase for each parameter
+    symmetry: 0,
+    lineWidth: 0,
+    opacity: 0,
+    complexity: 0
+};
 
 // Initialize the mandala canvas and setup
 function initMandala() {
@@ -139,8 +166,36 @@ function animate() {
         pulsePhase += 0.03;
     }
     
+    if (config.parameterAnimation) {
+        animationPhase += config.animationSpeed;
+        animateParameters();
+    }
+    
     drawMandala();
     animationId = requestAnimationFrame(animate);
+}
+
+// Animate parameters over time
+function animateParameters() {
+    // For each parameter that should be animated
+    Object.keys(config.animationParameters).forEach(param => {
+        if (config.animationParameters[param]) {
+            const range = config.animationRanges[param];
+            const mid = (range.max + range.min) / 2;
+            const amplitude = (range.max - range.min) / 2;
+            
+            // Update the phase for this parameter at its specific speed
+            parameterPhases[param] += config.animationSpeed * config.animationSpeeds[param];
+            
+            // Use sine wave to smoothly interpolate between min and max
+            config[param] = mid + amplitude * Math.sin(parameterPhases[param]);
+            
+            // For integer parameters, round the value
+            if (param === 'symmetry' || param === 'layers') {
+                config[param] = Math.round(config[param]);
+            }
+        }
+    });
 }
 
 // Generate a new random mandala
