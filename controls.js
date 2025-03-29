@@ -146,7 +146,7 @@ function setupKeyboardShortcuts() {
             toggleGuiVisibility();
         }
         
-        // 1-3 keys - Switch between algorithms
+        // 1-4 keys - Switch between algorithms
         if (event.code === 'Digit1') {
             window.MandalaApp.setAlgorithm('simple');
         }
@@ -155,6 +155,9 @@ function setupKeyboardShortcuts() {
         }
         if (event.code === 'Digit3') {
             window.MandalaApp.setAlgorithm('flower');
+        }
+        if (event.code === 'Digit4') {
+            window.MandalaApp.setAlgorithm('shader');
         }
     });
 }
