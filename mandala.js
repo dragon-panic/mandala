@@ -16,7 +16,7 @@ const config = {
     colorMode: 'monochrome', // Color mode: monochrome, rainbow, complementary
     layers: 3,             // Number of pattern layers
     pulseEffect: true,     // Add pulsing effect
-    algorithm: 'simple'    // Which algorithm to use for drawing
+    algorithm: 'flower'    // Which algorithm to use for drawing
 };
 
 // Available algorithms (reference to window.algorithms)
