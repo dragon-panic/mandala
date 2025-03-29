@@ -16,7 +16,7 @@ const config = {
     colorMode: 'monochrome', // Color mode: monochrome, rainbow, complementary
     layers: 3,             // Number of pattern layers
     pulseEffect: true,     // Add pulsing effect
-    algorithm: 'flower',    // Which algorithm to use for drawing
+    algorithm: 'shader',    // Which algorithm to use for drawing
     parameterAnimation: false,     // Enable parameter animation
     animationSpeed: 0.01,         // Base speed of parameter animation
     animationParameters: {        // Which parameters to animate

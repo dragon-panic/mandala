@@ -146,16 +146,7 @@ function setupKeyboardShortcuts() {
             toggleGuiVisibility();
         }
         
-        // 1-4 keys - Switch between algorithms
-        if (event.code === 'Digit1') {
-            window.MandalaApp.setAlgorithm('simple');
-        }
-        if (event.code === 'Digit2') {
-            window.MandalaApp.setAlgorithm('geometric');
-        }
-        if (event.code === 'Digit3') {
-            window.MandalaApp.setAlgorithm('flower');
-        }
+        // 4 key - Switch to shader algorithm
         if (event.code === 'Digit4') {
             window.MandalaApp.setAlgorithm('shader');
         }
@@ -187,7 +178,7 @@ function setupPresets(folder, config) {
                 colorMode: 'monochrome',
                 layers: 3,
                 complexity: 0.5,
-                algorithm: 'simple'
+                algorithm: 'shader'
             });
         },
         'Floral': function() {
@@ -200,7 +191,7 @@ function setupPresets(folder, config) {
                 layers: 4,
                 complexity: 0.7,
                 pulseEffect: true,
-                algorithm: 'simple'
+                algorithm: 'shader'
             });
         },
         'Minimalist': function() {
@@ -214,7 +205,7 @@ function setupPresets(folder, config) {
                 layers: 2,
                 complexity: 0.3,
                 pulseEffect: false,
-                algorithm: 'simple'
+                algorithm: 'shader'
             });
         },
         'Ocean Waves': function() {
@@ -228,7 +219,7 @@ function setupPresets(folder, config) {
                 layers: 4,
                 complexity: 0.8,
                 rotationSpeed: 0.002,
-                algorithm: 'simple'
+                algorithm: 'shader'
             });
         },
         'Sacred Geometry': function() {
@@ -241,66 +232,9 @@ function setupPresets(folder, config) {
                 backgroundColor: '#110011',
                 layers: 3,
                 complexity: 0.6,
-                algorithm: 'simple'
+                algorithm: 'shader'
             });
         },
-        // Geometric algorithm presets
-        'Geometric Stars': function() {
-            applyPreset({
-                symmetry: 8,
-                lineWidth: 1.8,
-                opacity: 0.8,
-                useGradient: true,
-                colorMode: 'complementary',
-                backgroundColor: '#000022',
-                layers: 3,
-                complexity: 0.7,
-                algorithm: 'geometric'
-            });
-        },
-        'Sacred Polygons': function() {
-            applyPreset({
-                symmetry: 6,
-                lineWidth: 1.2,
-                opacity: 0.9,
-                useGradient: true,
-                colorMode: 'earth',
-                backgroundColor: '#111111',
-                layers: 4,
-                complexity: 0.5,
-                algorithm: 'geometric'
-            });
-        },
-        // Flower algorithm presets
-        'Spring Bloom': function() {
-            applyPreset({
-                symmetry: 10,
-                lineWidth: 1.4,
-                opacity: 0.85,
-                useGradient: true,
-                colorMode: 'rainbow',
-                backgroundColor: '#001a00',
-                layers: 3,
-                complexity: 0.6,
-                pulseEffect: true,
-                algorithm: 'flower'
-            });
-        },
-        'Lotus Flow': function() {
-            applyPreset({
-                symmetry: 12,
-                lineWidth: 1.0,
-                opacity: 0.75,
-                useGradient: true,
-                colorMode: 'complementary',
-                backgroundColor: '#000a1a',
-                layers: 4,
-                complexity: 0.8,
-                pulseEffect: true,
-                algorithm: 'flower'
-            });
-        },
-        // Parameter animation presets
         'Dancing Mandala': function() {
             applyPreset({
                 symmetry: 8,
@@ -314,7 +248,7 @@ function setupPresets(folder, config) {
                 pulseEffect: true,
                 autoRotate: true,
                 rotationSpeed: 0.002,
-                algorithm: 'flower',
+                algorithm: 'shader',
                 parameterAnimation: true,
                 animationSpeed: 0.015,
                 animationParameters: {
@@ -334,70 +268,6 @@ function setupPresets(folder, config) {
                     lineWidth: 1.3,
                     opacity: 2.0,
                     complexity: 0.7
-                }
-            });
-        },
-        'Slow Breathing': function() {
-            applyPreset({
-                symmetry: 6,
-                lineWidth: 1.2,
-                opacity: 0.85,
-                useGradient: true,
-                colorMode: 'complementary',
-                backgroundColor: '#000000',
-                layers: 4,
-                complexity: 0.5,
-                pulseEffect: false,
-                autoRotate: true,
-                rotationSpeed: 0.001,
-                algorithm: 'geometric',
-                parameterAnimation: true,
-                animationSpeed: 0.005,
-                animationParameters: {
-                    symmetry: false,
-                    lineWidth: true,
-                    opacity: true,
-                    complexity: false
-                },
-                animationRanges: {
-                    lineWidth: { min: 0.5, max: 2.0 },
-                    opacity: { min: 0.5, max: 1.0 }
-                },
-                animationSpeeds: {
-                    lineWidth: 1.0,
-                    opacity: 0.6
-                }
-            });
-        },
-        'Rhythmic Flow': function() {
-            applyPreset({
-                symmetry: 10,
-                lineWidth: 1.8,
-                opacity: 0.7,
-                useGradient: true,
-                colorMode: 'ocean',
-                backgroundColor: '#001a1a',
-                layers: 3,
-                complexity: 0.7,
-                pulseEffect: true,
-                autoRotate: true,
-                rotationSpeed: 0.003,
-                algorithm: 'simple',
-                parameterAnimation: true,
-                animationSpeed: 0.02,
-                animationParameters: {
-                    symmetry: true,
-                    lineWidth: false,
-                    opacity: false,
-                    complexity: true
-                },
-                animationRanges: {
-                    symmetry: { min: 6, max: 16 },
-                    complexity: { min: 0.3, max: 0.9 }
-                },
-                animationSpeeds: {
-                    symmetry: 0.3,
-                    complexity: 2.5
                 }
             });
         }
