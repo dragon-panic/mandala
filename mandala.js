@@ -2,7 +2,7 @@
 
 // Configuration options - will be controlled via controls.js
 const config = {
-    symmetry: 8,           // Number of reflections
+    symmetry: 32,           // Number of reflections
     lineWidth: 2,          // Width of the lines
     rotationSpeed: 0.001,  // Speed of automatic rotation
     color: '#ffffff',      // Line color
@@ -13,12 +13,12 @@ const config = {
     complexity: 0.5,       // Affects pattern complexity
     animate: true,         // Enable animation
     useGradient: true,     // Use color gradients
-    colorMode: 'complementary', // Color mode: monochrome, rainbow, complementary
+    colorMode: 'rainbow', // Color mode: monochrome, rainbow, complementary
     layers: 3,             // Number of pattern layers
     pulseEffect: true,     // Add pulsing effect
     algorithm: 'shader',    // Which algorithm to use for drawing
-    parameterAnimation: false,     // Enable parameter animation
-    animationSpeed: 0.01,         // Base speed of parameter animation
+    parameterAnimation: true,     // Enable parameter animation
+    animationSpeed: 0.001,         // Base speed of parameter animation
     animationParameters: {        // Which parameters to animate
         symmetry: false,
         lineWidth: false,
