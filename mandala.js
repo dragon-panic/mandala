@@ -13,7 +13,7 @@ const config = {
     complexity: 0.5,       // Affects pattern complexity
     animate: true,         // Enable animation
     useGradient: true,     // Use color gradients
-    colorMode: 'monochrome', // Color mode: monochrome, rainbow, complementary
+    colorMode: 'complementary', // Color mode: monochrome, rainbow, complementary
     layers: 3,             // Number of pattern layers
     pulseEffect: true,     // Add pulsing effect
     algorithm: 'shader',    // Which algorithm to use for drawing
