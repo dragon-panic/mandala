@@ -2,6 +2,8 @@
 
 An innovative web application that transforms sacred geometry creation into an intuitive, meditative experience. Mandala Flow blends ancient tradition with cutting-edge technology, allowing users to explore the intersection of intentional design and algorithmic beauty.
 
+**Live Demo**: [https://dragon-panic.github.io/mandala/](https://dragon-panic.github.io/mandala/)
+
 ## Features
 
 - Dynamic mandala generation with symmetry controls
@@ -76,6 +78,20 @@ An innovative web application that transforms sacred geometry creation into an i
 - **index.html**: Main HTML file
 - **mandala.js**: Core mandala generation and rendering logic
 - **controls.js**: UI controls and interaction handling
+- **algorithms/**: Contains different mandala drawing algorithms
+  - **shader.js**: WebGL shader-based rendering
+  - **fractalMandala.js**: Fractal-based pattern generation
+
+## Deployment
+
+This project is deployed using GitHub Pages. The live version can be accessed at [https://dragon-panic.github.io/mandala/](https://dragon-panic.github.io/mandala/).
+
+### Deploying Your Own Version
+
+1. Fork this repository
+2. Enable GitHub Pages in your repository settings
+3. Choose to deploy from the `gh-pages` branch
+4. The GitHub Actions workflow will automatically build and deploy your site whenever you push to the main branch
 
 ## Customization
 
